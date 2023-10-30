@@ -16,6 +16,7 @@ public class MyArrayListTest {
     private static final int NUMBER_FOR_INCREASE_ARRAY_LENGTH = 3;
     private static final int INIT_LIST_SIZE_OF_RANDOM = 9;
     private MyList<Integer> list;
+    private MyArrayList<Object> objectMyArrayList;
     private Random random;
 
     @BeforeEach
@@ -52,6 +53,11 @@ public class MyArrayListTest {
         list.add(TEST_INTEGER, 0);
         assertEquals(list.size(), 10);
         assertEquals(list.get(0), TEST_INTEGER);
+        MyArrayList<Object> objectMyArrayList = new MyArrayList<>();
+        for (int i = 0; i < 1000; i++) {
+            objectMyArrayList.add(new Object(), 0);
+        }
+
     }
 
     @Test
@@ -72,7 +78,7 @@ public class MyArrayListTest {
     @Test
     public void addElementByFailedIndex() {
         ArrayIndexOutOfBoundsException e = assertThrows(ArrayIndexOutOfBoundsException.class,
-                () -> list.add(TEST_INTEGER, list.size()));
+                () -> list.add(TEST_INTEGER, list.size() + 1));
     }
 
     @Test
